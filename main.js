@@ -37,10 +37,10 @@ export async function ambilDaftarjadwal() {
       id: dok.id,
       hari: dok.data().hari,
       jamke: dok.data().jamke,
-      kelas: dok.data().kelas,
+      waktu: dok.data().waktu,
       mapel: dok.data().mapel,
       namaguru: dok.data().namaguru,
-      waktu: dok.data().waktu
+      kelas: dok.data().kelas
      
 
     });
@@ -55,15 +55,15 @@ export function formatAngka(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-export async function tambahjadwal(hari, jamke, kelas, mapel, namaguru, waktu) {
+export async function tambahjadwal(hari, jamke, waktu, mapel, namaguru, kelas) {
   try {
     const dokRef = await addDoc(collection(db, 'jadwal'), {
       hari: hari,
       jamke: jamke,
-      kelas: kelas,
+      waktu: waktu,
       mapel: mapel,
       namaguru: namaguru,
-      guru: waktu
+      kelas: kelas
     });
     console.log('berhasil menembah ' + dokRef.id);
   } catch (e) {
@@ -75,14 +75,14 @@ export async function hapusjadwal(docId) {
   await deleteDoc(doc(db, "jadwal", docId));
 }
 
-export async function ubahjadwal(docId, hari, jamke, kelas, mapel, namaguru, waktu) {
+export async function ubahjadwal(docId, hari, jamke, waktu, mapel, namaguru, kelas) {
   await updateDoc(doc(db, "jadwal", docId), {
     hari: hari,
     jamke: jamke,
-    kelas: kelas,
+    waktu: waktu,
     mapel: mapel,
     namaguru: namaguru,
-    waktu: waktu
+    kelas: kelas
   });
 }
 
