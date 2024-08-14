@@ -68,18 +68,18 @@
     const docId = parameterURL.get('docId')
     const absensi = await ambilAbsensi(docId);
 
-    elemenTanggal.value = hari.hari;
-    elemenNis.value = jamke.jamke;
-    elemenNama.value = waktu.waktu;
-    elemenAlamat.value = mapel.mapel;
-    elemenNoTlpn.value = namaguru.namaguru;
+    elemenhari.value = hari.hari;
+    elemenjamke.value = jamke.jamke;
+    elemenwaktu.value = waktu.waktu;
+    elemenmapel.value = mapel.mapel;
+    elemennamaguru.value = namaguru.namaguru;
     elemenKelas.value = kelas.kelas;
     
 
 
     tombolUbah.addEventListener('click', async function(el) {
       el.preventDefault();
-      await ubahAbsensi(docId, elemenTanggal.value, elemenNis.value, elemenNama.value, elemenAlamat.value, elemenNoTlpn.value, elemenKelas.value, elemenKeterangan.value);
+      await ubahAbsensi(docId, elemenhari.value, elemenjamke.value, elemenwaktu.value, elemenmapel.value, elemennamaguru.value, elemenKelas);
       window.location.href = 'index.html';
     });
   </script>
