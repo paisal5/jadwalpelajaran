@@ -38,7 +38,7 @@ export async function ambilDaftarMapel() {
       id: dok.id,
       hari: dok.data().hari,
       jamke: dok.data().jamke,
-      waktu: dok.data().wakti,
+      waktu: dok.data().waktu,
       mapel: dok.data().mapel,
       namaguru:dok.data().namaguru,
       kelas: dok.data().kelas,
@@ -50,4 +50,42 @@ export async function ambilDaftarMapel() {
 
 
   return hasil;
+}
+
+export async function tambahAbsensi(hari, jamke, waktu, mapel, namaguru, kelas) {
+  try {
+    const dokRef = await addDoc(collection(db, 'absensi'), {
+      hari: hari,
+      jamke: jamke,
+      waktu: waktu,
+      mapel: mapel,
+      namaguru: namaguru,
+      kelas: kelas
+    });
+    console.log('berhasil menembah ' + dokRef.id);
+  } catch (e) {
+    console.log('gagal menambah ' + e);
+  }
+}
+
+export async function hapusAbsensi(docId) {
+  await deleteDoc(doc(db, "absensi", docId));
+}
+
+export async function ubahAbsensi(hari, jamke, waktu, mapel, namaguru, kelas) {
+  await updateDoc(doc(db, "absensi", docId), {
+    hari: hari,
+    jamke: jamke,
+    waktu: waktu,
+    mapel: mapel,
+    namaguru: namaguru,
+    kelas: kelas
+  });
+}
+
+export async function ambilAbsensi(docId) {
+  const docRef = await doc(db, "absensi", docId);
+  const docSnap = await getDoc(docRef);
+
+  return await docSnap.data();
 }
