@@ -32,7 +32,7 @@
         <input type="text" class="form-control" id="input-nis">
       </div>
       <div class="mb-3">
-        <label class="form-label">waktu</label>
+        <label class="form-label">kelas</label>
         <input type="text" class="form-control" id="input-nama">
       </div>
       <div class="mb-3">
@@ -40,11 +40,11 @@
         <input type="text" class="form-control" id="input-alamat">
       </div>
       <div class="mb-3">
-        <label class="form-label">namaguru</label>
+        <label class="form-label">nama guru</label>
         <input type="text" class="form-control" id="input-noTlpn">
       </div>
       <div class="mb-3">
-        <label class="form-label">Kelas</label>
+        <label class="form-label">waktu</label>
         <input type="text" class="form-control" id="input-kelas">
       </div>
       <div class="d-flex justify-content-center">
@@ -53,33 +53,34 @@
   </form>
 
   <script type="module">
-    import { ambilAbsensi, ubahAbsensi } from './main.js';
+    import { ambilDaftarMapel, ubahMapel } from './main.js';
 
     let tombolUbah = document.getElementById('tombol-ubah');
-    let elemenTanggal = document.getElementById('input-hari');
-    let elemenNis = document.getElementById('input-jamke');
-    let elemenNama = document.getElementById('input-waktu');
-    let elemenAlamat = document.getElementById('input-mapel');
-    let elemenNoTlpn = document.getElementById('input-namaguru');
+    let elemenTanggal = document.getElementById('input-tanggal');
+    let elemenNis = document.getElementById('input-nis');
+    let elemenNama = document.getElementById('input-nama');
+    let elemenAlamat = document.getElementById('input-alamat');
+    let elemenNoTlpn = document.getElementById('input-noTlpn');
     let elemenKelas = document.getElementById('input-kelas');
+    let elemenKeterangan = document.getElementById('input-keterangan');
 
     const queryString = window.location.search
     const parameterURL = new URLSearchParams(queryString);
     const docId = parameterURL.get('docId')
     const absensi = await ambilAbsensi(docId);
 
-    elemenhari.value = hari.hari;
-    elemenjamke.value = jamke.jamke;
-    elemenwaktu.value = waktu.waktu;
-    elemenmapel.value = mapel.mapel;
-    elemennamaguru.value = namaguru.namaguru;
-    elemenKelas.value = kelas.kelas;
-    
+    elemenTanggal.value = absensi.tanggal;
+    elemenNis.value = absensi.nis;
+    elemenNama.value = absensi.nama;
+    elemenAlamat.value = absensi.alamat;
+    elemenNoTlpn.value = absensi.noTlpn;
+    elemenKelas.value = absensi.kelas;
+    elemenKeterangan.value = absensi.keterangan;
 
 
     tombolUbah.addEventListener('click', async function(el) {
       el.preventDefault();
-      await ubahAbsensi(docId, elemenhari.value, elemenjamke.value, elemenwaktu.value, elemenmapel.value, elemennamaguru.value, elemenKelas);
+      await ubahAbsensi(docId, elemenTanggal.value, elemenNis.value, elemenNama.value, elemenAlamat.value, elemenNoTlpn.value, elemenKelas.value, elemenKeterangan.value);
       window.location.href = 'index.html';
     });
   </script>
