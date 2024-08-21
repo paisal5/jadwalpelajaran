@@ -52,9 +52,9 @@ export async function ambilDaftarMapel() {
   return hasil;
 }
 
-export async function tambahAbsensi(hari, jamke, waktu, mapel, namaguru, kelas) {
+export async function tambahjadwal(hari, jamke, waktu, mapel, namaguru, kelas) {
   try {
-    const dokRef = await addDoc(collection(db, 'absensi'), {
+    const dokRef = await addDoc(collection(db, 'jadwal'), {
       hari: hari,
       jamke: jamke,
       waktu: waktu,
@@ -68,12 +68,12 @@ export async function tambahAbsensi(hari, jamke, waktu, mapel, namaguru, kelas) 
   }
 }
 
-export async function hapusAbsensi(docId) {
-  await deleteDoc(doc(db, "absensi", docId));
+export async function hapusjadwal(docId) {
+  await deleteDoc(doc(db, "jadwal", docId));
 }
 
-export async function ubahAbsensi(hari, jamke, waktu, mapel, namaguru, kelas) {
-  await updateDoc(doc(db, "absensi", docId), {
+export async function ubahjadwalhapusjadwal(hari, jamke, waktu, mapel, namaguru, kelas) {
+  await updateDoc(doc(db, "jadwal", docId), {
     hari: hari,
     jamke: jamke,
     waktu: waktu,
@@ -83,7 +83,7 @@ export async function ubahAbsensi(hari, jamke, waktu, mapel, namaguru, kelas) {
   });
 }
 
-export async function ambilAbsensi(docId) {
+export async function ambiljadwal(docId) {
   const docRef = await doc(db, "absensi", docId);
   const docSnap = await getDoc(docRef);
 
